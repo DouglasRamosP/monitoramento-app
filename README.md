@@ -89,6 +89,94 @@ Quando terminar, faça merge com a main:
 Apague a branch se quiser:
     git branch -d feature/nome-da-tarefa
 
+#### PASSO A PASSO
+
+---
+
+## 🚀 Etapas para Desenvolver seu Projeto
+
+### 🔹 **1. Planejamento e Design**
+- [ ] Refine os **requisitos funcionais** (já bem definidos no documento).
+- [ ] Crie **wireframes** e **protótipos** das telas (Figma é uma boa opção).
+- [ ] Modele os **dados** (equipamentos, usuários, agendamentos, relatórios).
+
+---
+
+### 🔹 **2. Configuração do Ambiente**
+- Backend: `Node.js + Express + MongoDB`
+- Frontend: `React + Vite`
+- Mobile (futuramente): `React Native` ou `Flutter`
+
+---
+
+### 🔹 **3. Backend (API RESTful com Express)**
+- [ ] **Endpoints principais**:
+  - `POST /login` – autenticação
+  - `GET /ambientes` – listar ambientes
+  - `POST /agendamentos` – criar agendamento
+  - `GET /equipamentos/:id` – dados via QR Code
+  - `POST /problemas` – registrar problema
+  - `GET /demandas` – (admin) visualizar demandas
+- [ ] **Modelos MongoDB**:
+  - Usuário, Equipamento, Ambiente, Agendamento, Problema
+- [ ] **Autenticação JWT**
+- [ ] **Criptografia de dados sensíveis**
+- [ ] **Integração com biblioteca de QR Code** (ex: `qrcode`, `qrcode-reader`)
+
+---
+
+### 🔹 **4. Frontend (React + Vite)**
+- [ ] **Páginas principais**:
+  - Login
+  - Dashboard (ambientes, equipamentos)
+  - Agendamento
+  - Relatório de problemas
+  - Painel do administrador
+- [ ] **Minimapa interativo** (pode usar SVG ou canvas)
+- [ ] **Alertas visuais** (ex: ícones vermelhos para problemas)
+- [ ] **Leitura de QR Code** (ex: `react-qr-reader`)
+
+---
+
+### 🔹 **5. Mobile App (React Native ou Flutter)**
+- [ ] Leitura de QR Code
+- [ ] Agendamento rápido
+- [ ] Relato de problemas
+- [ ] Notificações push (opcional)
+
+---
+
+### 🔹 **6. Testes e Validação**
+- [ ] Testes unitários e de integração (Jest, Supertest)
+- [ ] Testes de usabilidade
+- [ ] Testes de segurança (validação de entrada, autenticação)
+
+---
+
+### 🔹 **7. Deploy**
+- Backend: Render, Railway, Heroku, ou VPS
+- Frontend: Vercel, Netlify
+- Banco de dados: MongoDB Atlas
+- Mobile: Play Store / App Store (futuramente)
+
+---
+
+### 🔹 **8. Pós-Deploy**
+- [ ] Monitoramento (ex: LogRocket, Sentry)
+- [ ] Sistema de pontos e sorteios (gamificação)
+- [ ] Treinamento dos usuários
+
+---
+
+POSSÍVEIS PRÓXIMOS PASSOS:
+- Criar a estrutura inicial do projeto (backend ou frontend)
+- Gerar modelos MongoDB
+- Criar rotas Express
+- Montar o banco de dados
+- Integrar QR Code
+
+
+
 
 #### Frontend
 ```bash
