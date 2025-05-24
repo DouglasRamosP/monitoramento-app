@@ -1,11 +1,17 @@
 const express = require("express");
-const app = express();
-const PORT = 3000;
+const dotenv = require("dotenv");
+const connectDB = require("./config/db"); // <-- Importa a conexão
 
-app.use(express.json()); // Permite receber JSON no corpo da requisição
+dotenv.config(); // Carrega variáveis do .env
+connectDB(); // Conecta ao MongoDB
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Servidor Express funcionando!");
+  res.send("Servidor Express funcionando com MongoDB!");
 });
 
 app.listen(PORT, () => {
