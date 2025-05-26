@@ -38,6 +38,9 @@ Sistema fullstack para controle de agendamentos e monitoramento de atividades.
 
 monitoramento-app/ ├── frontend/ # Interface do usuário (React) ├── backend/ # API e lógica de negócios (Node.js)
 
+![image](https://github.com/user-attachments/assets/af775f22-8784-4de8-b566-d72a92bf4f75)
+
+
 ## Como rodar
 
 ### Manual de criação e Gerencimento das branches
