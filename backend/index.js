@@ -1,14 +1,16 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db"); // <-- Importa a conexão
+const connectDB = require("./config/db");
+const usuariosRoutes = require("./routes/usuarios");
 
-dotenv.config(); // Carrega variáveis do .env
-connectDB(); // Conecta ao MongoDB
+dotenv.config();
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use('/usuarios', usuariosRoutes);
 
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando com MongoDB!");
