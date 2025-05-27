@@ -11,11 +11,16 @@ const User = require('../models/User');
 // Essa rota será acessada, por exemplo, com POST /usuarios (dependendo do index.js)
 router.post('/', async (req, res) => {
   // Extrai os dados enviados no corpo da requisição (nome, email, senha, perfil)
-  const { nome, email, senha, perfil } = req.body;
+  const { nome, email, senha, unidade, perfil } = req.body;
+
+  // Validação simples (pode ser melhorada com Joi ou express-validator)
+    if (!nome || !email || !senha || !unidade) {
+      return res.status(400).json({ message: "Todos os campos são obrigatórios." });
+    }
 
   try {
     // Cria um novo usuário com os dados recebidos
-    const novoUsuario = new User({ nome, email, senha, perfil });
+    const novoUsuario = new User({ nome, email, senha, unidade, perfil });
 
     // Salva o novo usuário no banco de dados
     await novoUsuario.save();
