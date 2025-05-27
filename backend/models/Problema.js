@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AgendamentoSchema = new mongoose.Schema(
+const ProblemaSchema = new mongoose.Schema(
   {
     usuario: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     tipo: { type: String, enum: ["equipamento", "ambiente"], required: true },
@@ -14,20 +14,16 @@ const AgendamentoSchema = new mongoose.Schema(
       ref: "Ambiente",
       default: null,
     },
-    data: { type: Date, required: true },
-    observacoes: String,
+    descricao: { type: String, required: true },
     unidade: {
       type: String,
       enum: ["unidade1", "unidade2"],
       required: true,
     },
-    status: {
-      type: String,
-      enum: ["pendente", "concluido", "cancelado"],
-      default: "pendente",
-    },
+    imagemUrl: String,
+    resolvido: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Agendamento", AgendamentoSchema);
+module.exports = mongoose.model("Problema", ProblemaSchema);

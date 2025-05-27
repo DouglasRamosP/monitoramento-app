@@ -12,9 +12,9 @@ const AmbienteSchema = new mongoose.Schema(
       default: "ativo",
     },
     unidade: {
-        type: String,
-        enum: ["unidade1", "unidade2"],
-        required: true
+      type: String,
+      enum: ["unidade1", "unidade2"],
+      required: true,
     },
     localização: String,
     mapaCoords: {
