@@ -12,6 +12,11 @@ const EquipamentoSchema = new mongoose.Schema(
       enum: ["ativo", "inativo", "manutencao"],
       default: "ativo",
     },
+     unidade: {
+        type: String,
+        enum: ["unidade1", "unidade2"],
+        required: true
+    },
     ambiente: { type: mongoose.Schema.Types.ObjectId, ref: "Ambiente" },
   },
   { timestamps: true }
