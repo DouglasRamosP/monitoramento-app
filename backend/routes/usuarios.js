@@ -37,15 +37,25 @@ router.post("/", async (req, res) => {
 });
 
 // GET /usuarios/:id - buscar um usuário por ID
-router.get("/:id", async (res, req) => {
+router.get("/:id", async (req, res) => {
   try {
-    const usuario = await Usuario.findById(req.params.id);
+    const usuario = await User.findById(req.params.id);
     if (!usuario) {
       return res.status(404).json({ erro: "Usuário não encontrado" });
     }
     res.json(usuario);
   } catch (err) {
     res.status(500).json({ erro: "Erro ao buscar usuário" });
+  }
+});
+
+// GET /usuarios - Listar todos os usuários
+router.get("/", async (req, res) => {
+  try {
+    const usuarios = await User.fin();
+    res.json(usuarios);
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao buscar usuários" });
   }
 });
 
