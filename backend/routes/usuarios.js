@@ -78,6 +78,22 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// DELETE /usuarios/:id - Deletar um usuário por ID
+router.delete("/:id", async (req, res) => {
+  try {
+    const usuarioRemovido = await Usuario.findByIdAndDelete(req.params.id);
+
+    if (!usuarioRemovido) {
+      return res.status(404).json({ erro: "Usuário não encontrado" });
+    }
+
+    res.json({ mensagem: "Usuário deletado com sucesso" });
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao deletar usuário" });
+  }
+});
+
+
 // Exporta o roteador para ser usado no arquivo principal da aplicação (ex: index.js)
 module.exports = router;
 
