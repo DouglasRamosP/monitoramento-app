@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 // Importa o Express, que é o framework usado para criar rotas e servidores HTTP
 const express = require("express");
 
