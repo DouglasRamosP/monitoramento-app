@@ -59,6 +59,25 @@ router.get("/", async (req, res) => {
   }
 });
 
+// PUT /usuarios/:id - Atualizar um usuário por ID
+router.put("/:id", async (req, res) => {
+  try {
+    const usuarioAtualizado = await User.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!usuarioAtualizado) {
+      return res.status(404).json({ erro: "Usuário não encontrado" });
+    }
+
+    res.json(usuarioAtualizado);
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao atualizar usuário" });
+  }
+});
+
 // Exporta o roteador para ser usado no arquivo principal da aplicação (ex: index.js)
 module.exports = router;
 
