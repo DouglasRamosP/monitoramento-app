@@ -80,8 +80,14 @@ router.put("/:id", async (req, res) => {
 
 // DELETE /usuarios/:id - Deletar um usuário por ID
 router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ status: "error", erro: "ID inválido" });
+  }
+
   try {
-    const usuarioRemovido = await User.findByIdAndDelete(req.params.id);
+    const usuarioRemovido = await User.findByIdAndDelete(id);
 
     if (!usuarioRemovido) {
       return res.status(404).json({ erro: "Usuário não encontrado" });
