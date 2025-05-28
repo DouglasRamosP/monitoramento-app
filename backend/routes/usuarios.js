@@ -52,7 +52,7 @@ router.get("/:id", async (req, res) => {
 // GET /usuarios - Listar todos os usuários
 router.get("/", async (req, res) => {
   try {
-    const usuarios = await User.fin();
+    const usuarios = await User.find();
     res.json(usuarios);
   } catch (err) {
     res.status(500).json({ erro: "Erro ao buscar usuários" });
