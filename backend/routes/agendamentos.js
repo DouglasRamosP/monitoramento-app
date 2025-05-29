@@ -39,4 +39,19 @@ router.post("/", async (req, res) => {
   }
 });
 
+// @desc    Atualiza um agendamento existente
+// @route   PUT /agendamento/:id
+router.put("/:id", async (req, res) => {
+  try {
+    const atualizado = await Agendamento.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json(atualizado);
+  } catch (err) {
+    res.status(400).json({ error: "Erro ao atualizar o agendamento" });
+  }
+});
+
 module.exports = router;
