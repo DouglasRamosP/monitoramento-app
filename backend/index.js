@@ -8,6 +8,8 @@ const connectDB = require("./config/db");
 const usuariosRoutes = require("./routes/usuarios");
 // Importa as rotas relacionadas aos ambientes
 const ambienteRoutes = require("./routes/ambiente");
+// Importa as rotas relacionadas a autenticação de login
+const authRoutes = require("./routes/auth");
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
 // Conecta ao banco de dados MongoDB
@@ -20,6 +22,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 // Define que todas as rotas que começarem com /usuarios serão tratadas pelo arquivo de rotas de usuários
 app.use("/usuarios", usuariosRoutes);
+// Agora temos POST /login
+app.use("/", authRoutes);
 // Define que todas as rotas que começarem com /ambiente serão tratadas pelo arquivo de rotas de usuário
 app.use("/ambientes", ambienteRoutes);
 // Rota principal (GET /) que apenas retorna uma mensagem simples
