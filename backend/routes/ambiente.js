@@ -3,13 +3,14 @@ const router = express.Router();
 const Ambiente = require("../models/Ambiente");
 const verificarToken = require("../middleware/authMiddleware");
 
-// Esta rota agora exige token
-router.get("/", verificarToken, (req, res) => {
+// Essa rota estava sendo usada apenas como teste para verificar se o middleware
+/*router.get("/", verificarToken, (req, res) => {
   res.json({ mensagem: "Acesso autorizado!" });
-});
+});*/
+
 // @desc    Lista todos os ambientes
 // @route   GET /ambientes
-router.get("/", async (req, res) => {
+router.get("/", verificarToken, async (req, res) => {
   try {
     const ambientes = await Ambiente.find();
     res.json(ambientes);
@@ -20,7 +21,7 @@ router.get("/", async (req, res) => {
 
 // @desc    Cria um novo ambiente
 // @route   POST /ambientes
-router.post("/", async (req, res) => {
+router.post("/", verificarToken, async (req, res) => {
   try {
     const novoAmbiente = new Ambiente(req.body);
     await novoAmbiente.save();
@@ -32,7 +33,7 @@ router.post("/", async (req, res) => {
 
 // @desc    Detalha um ambiente específico por ID
 // @route   GET /ambientes/:id
-router.get("/:id", async (req, res) => {
+router.get("/:id", verificarToken, async (req, res) => {
   try {
     const ambiente = await Ambiente.findById(req.params.id);
     if (!ambiente)
@@ -45,7 +46,7 @@ router.get("/:id", async (req, res) => {
 
 // @desc    Atualiza um ambiente existente
 // @route   PUT /ambientes/:id
-router.put("/:id", async (req, res) => {
+router.put("/:id", verificarToken, async (req, res) => {
   try {
     const atualizado = await Ambiente.findByIdAndUpdate(
       req.params.id,
@@ -60,7 +61,7 @@ router.put("/:id", async (req, res) => {
 
 // @desc    Remove um ambiente
 // @route   DELETE /ambientes/:id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verificarToken, async (req, res) => {
   try {
     await Ambiente.findByIdAndDelete(req.params.id);
     res.json({ mensagem: "Ambiente deletado com sucesso" });

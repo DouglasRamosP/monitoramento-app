@@ -7,6 +7,8 @@ const router = express.Router();
 
 // Importa o modelo de usuário que foi definido com Mongoose
 const User = require("../models/User");
+// Importa a autenticação por token
+const verificarToken = require("../middlewares/authMiddleware");
 
 // Define uma rota POST para criar um novo usuário
 // Essa rota será acessada, por exemplo, com POST /usuarios (dependendo do index.js)
@@ -38,7 +40,7 @@ router.post("/", async (req, res) => {
 });
 
 // GET /usuarios/:id - buscar um usuário por ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", verificarToken, async (req, res) => {
   try {
     const usuario = await User.findById(req.params.id);
     if (!usuario) {
@@ -51,7 +53,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // GET /usuarios - Listar todos os usuários
-router.get("/", async (req, res) => {
+router.get("/", verificarToken, async (req, res) => {
   try {
     const usuarios = await User.find();
     res.json(usuarios);
