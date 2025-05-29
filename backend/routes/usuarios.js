@@ -8,7 +8,7 @@ const router = express.Router();
 // Importa o modelo de usuário que foi definido com Mongoose
 const User = require("../models/User");
 // Importa a autenticação por token
-const verificarToken = require("../middlewares/authMiddleware");
+const verificarToken = require("../middleware/authMiddleware");
 
 // Define uma rota POST para criar um novo usuário
 // Essa rota será acessada, por exemplo, com POST /usuarios (dependendo do index.js)
