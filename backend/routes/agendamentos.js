@@ -20,10 +20,22 @@ router.get("/:id", async (req, res) => {
   try {
     const agendamentos = await Agendamento.findById(req.params.id);
     if (!agendamentos)
-      return res.status(404).json({ error: "Agendamento não encontrado" })
+      return res.status(404).json({ error: "Agendamento não encontrado" });
     res.json(agendamentos);
   } catch (err) {
     res.status(500).json({ error: "Erro ao buscar agendamentos" });
+  }
+});
+
+// @desc    Cria um novo Agendamento
+// @route   POST /agendamentos
+router.post("/", async (req, res) => {
+  try {
+    const agendamentos = Agendamento(req.body);
+    await agendamentos.save();
+    res.status(201).json(agendamentos);
+  } catch (err) {
+    res.status(400).json({ error: "Erro ao criar agendamento" });
   }
 });
 
