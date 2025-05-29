@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Agendamento = require("../models/Agendamento");
-// const verificarToken = require("../middleware/authMiddleware");
+const verificarToken = require("../middleware/authMiddleware");
 
 // @desc    Lista todos os ambientes
 // @route   GET /agendamentos
-router.get("/", async (req, res) => {
+router.get("/", verificarToken, async (req, res) => {
   try {
     const agendamentos = await Agendamento.find();
     res.json(agendamentos);
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 // @desc    Mostra um agendamento especificado por ID
 // @route   GET /agendamentos/:id
-router.get("/:id", async (req, res) => {
+router.get("/:id", verificarToken, async (req, res) => {
   try {
     const agendamentos = await Agendamento.findById(req.params.id);
     if (!agendamentos)
@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
 
 // @desc    Cria um novo Agendamento
 // @route   POST /agendamentos
-router.post("/", async (req, res) => {
+router.post("/", verificarToken, async (req, res) => {
   try {
     const agendamentos = Agendamento(req.body);
     await agendamentos.save();
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
 
 // @desc    Atualiza um agendamento existente
 // @route   PUT /agendamento/:id
-router.put("/:id", async (req, res) => {
+router.put("/:id", verificarToken, async (req, res) => {
   try {
     const atualizado = await Agendamento.findByIdAndUpdate(
       req.params.id,
@@ -56,7 +56,7 @@ router.put("/:id", async (req, res) => {
 
 // @desc    Remove um agendamento
 // @route   DELETE /agendamento/:id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verificarToken, async (req, res) => {
   try {
     await Agendamento.findByIdAndDelete(req.params.id);
     res.json({ mensagem: "Ambiente deletado com sucesso" });
