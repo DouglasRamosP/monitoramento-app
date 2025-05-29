@@ -54,4 +54,15 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// @desc    Remove um agendamento
+// @route   DELETE /agendamento/:id
+router.delete("/:id", async (req, res) => {
+  try {
+    await Agendamento.findByIdAndDelete(req.params.id);
+    res.json({ mensagem: "Ambiente deletado com sucesso" });
+  } catch (err) {
+    res.status(500).json({ error: "Erro ao deletar ambiente" });
+  }
+});
+
 module.exports = router;
