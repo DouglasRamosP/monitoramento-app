@@ -11,7 +11,7 @@ const ambienteRoutes = require("./routes/ambiente");
 // Importa as rotas relacionadas a autenticação de login
 const authRoutes = require("./routes/auth");
 // Importa as rotas relacionadas aos agendamentos
-const agendamentosRoutes = require("./routes/agendamentos")
+const agendamentosRoutes = require("./routes/agendamentos");
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
 // Conecta ao banco de dados MongoDB
@@ -29,7 +29,7 @@ app.use("/", authRoutes);
 // Define que todas as rotas que começarem com /ambiente serão tratadas pelo arquivo de rotas de usuário
 app.use("/ambientes", ambienteRoutes);
 // POST /agendamentos
-app.use("agendamentos", agendamentosRoutes);
+app.use("/agendamentos", agendamentosRoutes);
 // Rota principal (GET /) que apenas retorna uma mensagem simples
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando com MongoDB!");
