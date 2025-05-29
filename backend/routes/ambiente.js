@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Ambiente = require("../models/Ambiente");
-// const authMiddleware = require("../middlewares/auth"); // Para usar depois
+const verificarToken = require("../middleware/authMiddleware");
 
+// Esta rota agora exige token
+router.get("/", verificarToken, (req, res) => {
+  res.json({ mensagem: "Acesso autorizado!" });
+});
 // @desc    Lista todos os ambientes
 // @route   GET /ambientes
 router.get("/", async (req, res) => {
