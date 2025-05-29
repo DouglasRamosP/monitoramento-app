@@ -12,7 +12,7 @@ const verificarToken = require("../middleware/authMiddleware");
 
 // Define uma rota POST para criar um novo usuário
 // Essa rota será acessada, por exemplo, com POST /usuarios (dependendo do index.js)
-router.post("/", async (req, res) => {
+router.post("/", verificarToken, async (req, res) => {
   // Extrai os dados enviados no corpo da requisição (nome, email, senha, perfil)
   const { nome, email, senha, unidade, perfil } = req.body;
 
@@ -63,7 +63,7 @@ router.get("/", verificarToken, async (req, res) => {
 });
 
 // PUT /usuarios/:id - Atualizar um usuário por ID
-router.put("/:id", async (req, res) => {
+router.put("/:id", verificarToken, async (req, res) => {
   try {
     const usuarioAtualizado = await User.findByIdAndUpdate(
       req.params.id,
@@ -82,7 +82,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE /usuarios/:id - Deletar um usuário por ID
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verificarToken, async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
