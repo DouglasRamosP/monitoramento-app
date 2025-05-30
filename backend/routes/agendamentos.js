@@ -31,7 +31,10 @@ router.get("/:id", verificarToken, async (req, res) => {
 // @route   POST /agendamentos
 router.post("/", verificarToken, async (req, res) => {
   try {
-    const agendamentos = Agendamento(req.body);
+    const agendamentos = Agendamento({
+      ...req.body,
+      usuario: req.usuario.id, // Associa o agendamento ao usuário logado
+    });
     await agendamentos.save();
     res.status(201).json(agendamentos);
   } catch (err) {
