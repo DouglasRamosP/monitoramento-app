@@ -92,6 +92,28 @@ Quando terminar, faça merge com a main:
 Apague a branch se quiser:
     git branch -d feature/nome-da-tarefa
 
+git push origin main   # Envia para o GitHub
+git push azure main    # Envia para o Azure DevOps
+
+👨‍💻 1. Crie a branch local:
+git checkout -b feature/minha-nova-feature
+
+🚀 2. Suba para o GitHub (remote origin) e configure o rastreamento:
+git push -u origin feature/minha-nova-feature
+
+☁️ 3. Suba para o Azure DevOps (remote azure):
+git push azure feature/minha-nova-feature
+
+📦 1. Etapas do commit local
+git add README.md
+git commit -m "Atualiza instruções no README"
+
+🚀 2. Push para GitHub (origin)
+git push origin main
+
+☁️ 3. Push para Azure DevOps (azure)
+git push azure main
+
 #### PASSO A PASSO
 
 ---
